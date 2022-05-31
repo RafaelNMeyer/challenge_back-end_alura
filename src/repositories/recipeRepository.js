@@ -10,9 +10,31 @@ async function insertRecipe(recipe){
     return result.rows[0]
 }
 
-async function listRecipes(){
-    const result = await connection.query(`
+async function listByDate(year, month){
+    if(month){
+        const results = await connection.query(`
+            SELECT * FROM recipes
+            WHERE (EXTRACT(YEAR FROM date) = $1 AND EXTRACT(MONTH FROM date) = $2)
+        `,[year, month])
+        return results.rows
+    }
+    const results = await connection.query(`
         SELECT * FROM recipes
+        WHERE EXTRACT(YEAR FROM date) = $1
+    `,[year])
+    return results.rows
+}
+
+async function listRecipes(description){
+    if(description){
+        const result = await connection.query(`
+            SELECT * FROM recipes 
+            WHERE description = $1
+        `, [description])
+    return result.rows
+    }
+    const result = await connection.query(`
+        SELECT * FROM recipes 
     `)
     return result.rows
 }
@@ -45,4 +67,4 @@ async function deleteRecipe(id){
     return result.rows[0]
 }
 
-export {insertRecipe, listRecipes, listRecipe, updateRecipe, deleteRecipe};
+export {insertRecipe, listRecipes, listRecipe, updateRecipe, deleteRecipe, listByDate};

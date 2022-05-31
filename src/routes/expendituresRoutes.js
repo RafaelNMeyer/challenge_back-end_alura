@@ -6,6 +6,8 @@ const router = express.Router()
 router
     .post('/expenditures', expendituresController.insertExpenditure)
     .get('/expenditures', expendituresController.listExpenditures)
+    .get('/expenditures/?description=', expendituresController.listExpenditures)
+    .get('/expenditures/:year/:month', expendituresController.listByDate)
     .get('/expenditures/:id', expendituresController.listExpenditure)
     .put('/expenditures/:id', expendituresController.updateExpenditure)
     .delete('/expenditures/:id', expendituresController.deleteExpenditure)

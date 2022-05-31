@@ -10,9 +10,21 @@ async function insertRecipe(req, res, next){
     }
 }
 
+async function listByDate(req, res, next){
+    const {year, month} = req.params
+    try{
+        const result = await recipeService.listByDate(year, month)
+        return res.status(200).send(result)
+    }catch(error){
+        if(error.name === 'RecipeError') return res.status(error.status).send(error.message)
+        return next(error)
+    }
+}
+
 async function listRecipes(req, res, next){
     try{
-        const result = await recipeService.listRecipes();
+        const {description} = req.query
+        const result = await recipeService.listRecipes(description);
         return res.status(200).send(result)
     } catch(error){
         return next(error)
@@ -49,4 +61,4 @@ async function deleteRecipe(req, res, next){
     }
 }
 
-export {insertRecipe, listRecipes, listRecipe, updateRecipe, deleteRecipe}
+export {insertRecipe, listRecipes, listRecipe, updateRecipe, deleteRecipe, listByDate}

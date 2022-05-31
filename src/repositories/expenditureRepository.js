@@ -1,9 +1,31 @@
 import connection from '../database.js'
 
-async function listExpenditures(){
-    const results = await connection.query(`
-        SELECT * FROM expenditures
+async function listExpenditures(description){
+    if(description){
+        const result = await connection.query(`
+        SELECT * FROM expenditures 
+        WHERE description = $1
+    `, [description])
+    return result.rows
+    }
+    const result = await connection.query(`
+        SELECT * FROM expenditures 
     `)
+    return result.rows
+}
+
+async function listByDate(year, month){
+    if(month){
+        const results = await connection.query(`
+            SELECT * FROM expenditures
+            WHERE (EXTRACT(YEAR FROM date) = $1 AND EXTRACT(month FROM date) = $2)
+        `, [year, month])
+        return results.rows
+    }
+    const result = await connection.query(`
+        SELECT * FROM expenditures
+        WHERE EXTRACT(YEAR FROM date) = $1
+    `, [year])
     return results.rows
 }
 
@@ -45,4 +67,4 @@ async function deleteExpenditure(id){
     return result.rows[0]
 }
 
-export {listExpenditures, insertExpenditure, listExpenditure, updateExpenditure, deleteExpenditure}
+export {listExpenditures, insertExpenditure, listExpenditure, updateExpenditure, deleteExpenditure, listByDate}

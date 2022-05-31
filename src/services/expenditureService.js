@@ -3,8 +3,14 @@ import ExpenditureError from '../errors/ExpenditureError.js'
 
 const categorys = ['food', 'health', 'home', 'transport', 'education', 'leisure', 'unforeseen']
 
-async function listExpenditures(){
-    const result = await expenditureRepository.listExpenditures();
+async function listExpenditures(description){
+    const result = await expenditureRepository.listExpenditures(description);
+    return result
+}
+
+async function listByDate(year, month){
+    const result = await expenditureRepository.listByDate(year, month)
+    if(!result) throw new ExpenditureError('Expenditure not found', 404)
     return result
 }
 
@@ -29,9 +35,14 @@ async function expenditureInMonth(expenditure){
     } 
 }
 
+function validateCategory(category){
+    const containsCategory = categorys.includes(category)
+    {!containsCategory ? category = 'others' : null}
+    return category
+}
+
 async function insertExpenditure(expenditure){
-    const containsCategory = categorys.find(expenditure.category)
-    {!containsCategory ? expenditure.category = 'others' : null}
+    expenditure.category = validateCategory(expenditure.category)
     await expenditureInMonth(expenditure)
     const result = await expenditureRepository.insertExpenditure(expenditure);
     return result
@@ -43,7 +54,7 @@ async function updateExpenditure(id, expenditureBody){
     {description ?  expenditure.description = description : null} 
     {value ?  expenditure.value = value : null} 
     {date ?  expenditure.date = date : null} 
-    {category ?  expenditure.category = category : expenditure.category = 'others'} 
+    {category ?  expenditure.category = validateCategory(category) : expenditure.category = 'others'} 
     
     await expenditureInMonth(expenditure);
     const result = await expenditureRepository.updateExpenditure(id, expenditure);
@@ -56,4 +67,4 @@ async function deleteExpenditure(id){
     return result
 }
 
-export {listExpenditures, insertExpenditure, listExpenditure, updateExpenditure, deleteExpenditure}
+export {listExpenditures, insertExpenditure, listExpenditure, updateExpenditure, deleteExpenditure, listByDate}

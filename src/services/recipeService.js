@@ -1,8 +1,14 @@
 import * as recipeRepository from '../repositories/recipeRepository.js';
 import RecipeError from '../errors/RecipeError.js'
 
-async function listRecipes(){
-    const result = await recipeRepository.listRecipes();
+async function listRecipes(description){
+    const result = await recipeRepository.listRecipes(description);
+    return result
+}
+
+async function listByDate(year, month){
+    const result = await recipeRepository.listByDate(year, month);
+    if(!result) throw new RecipeError('Recipe not found', 404)
     return result
 }
 
@@ -51,4 +57,4 @@ async function deleteRecipe(id){
     return result
 }
 
-export {insertRecipe, listRecipes, listRecipe, updateRecipe, deleteRecipe}
+export {insertRecipe, listRecipes, listRecipe, updateRecipe, deleteRecipe, listByDate}

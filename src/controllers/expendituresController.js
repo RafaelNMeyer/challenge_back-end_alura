@@ -10,9 +10,21 @@ async function insertExpenditure(req, res, next){
     }
 }
 
-async function listExpenditures(req, res, next){
+async function listByDate(req, res, next){
+    const {year, month} = req.params
     try{
-        const result = await expenditureService.listExpenditures()
+        const result = await expenditureService.listByDate(year, month)
+        return res.status(200).send(result)
+    }catch(error){
+        if (error.name === 'ExpenditureError') return res.status(error.status).send(error.message);
+        return next(error)
+    }
+}
+
+async function listExpenditures(req, res, next){
+    const {description} = req.query
+    try{
+        const result = await expenditureService.listExpenditures(description)
         return res.status(200).send(result)
     }catch(error){
         return next(error)
@@ -49,4 +61,4 @@ async function deleteExpenditure(req, res, next){
     }
 }
 
-export {listExpenditures, insertExpenditure, listExpenditure, updateExpenditure, deleteExpenditure}
+export {listExpenditures, insertExpenditure, listExpenditure, updateExpenditure, deleteExpenditure, listByDate}
