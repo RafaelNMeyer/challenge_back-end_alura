@@ -27,15 +27,4 @@ describe('POST /recipes', () => {
             .send(body);
         expect(result.status).toEqual(201);
     });
-
-    // it('returns 409 if new user already exists', async () => {
-    //     const body = mockUserFactory();
-
-    //     await supertest(app).post('/users/sign-up').send(body);
-
-    //     const result = await supertest(app)
-    //         .post('/users/sign-up')
-    //         .send(body);
-    //     expect(result.status).toEqual(409);
-    // });
 })
