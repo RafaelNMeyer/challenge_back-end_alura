@@ -14,7 +14,7 @@ async function add(token){
     const expirationDate = jwt.decode(token).exp
     const hashToken = createHashToken(token)
     await blocklistAcessToken.set(hashToken, '')
-    blocklistAcessToken.expireat(hashToken, expirationDate)
+    blocklistAcessToken.expire(hashToken, expirationDate)
 }
 
 async function exists(token){

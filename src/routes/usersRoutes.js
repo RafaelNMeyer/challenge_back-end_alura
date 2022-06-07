@@ -8,5 +8,7 @@ router
     .post('/user', authentication.bearer, userController.userByEmail)
     .post('/register', userController.createUser)
     .post('/login', authentication.local, userController.login)
+    .post('/logout', [authentication.refresh, authentication.bearer], userController.logout)
+    .post('/updateToken', authentication.refresh, userController.login)
 
 export default router

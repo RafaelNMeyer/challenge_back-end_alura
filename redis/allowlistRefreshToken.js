@@ -6,7 +6,7 @@ await allowListRefreshToken.connect()
 
 async function add(token, value, expirationDate){
     await allowListRefreshToken.set(token, value)
-    allowListRefreshToken.expireat(token, expirationDate)
+    allowListRefreshToken.expire(token, expirationDate)
 }
 
 async function getValue(token){

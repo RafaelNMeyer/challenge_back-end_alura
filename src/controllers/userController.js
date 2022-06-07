@@ -1,5 +1,6 @@
 import * as userService from '../services/userService.js'
 import * as accessTokens from '../tokens/accessToken.js'
+import * as refreshTokens from '../tokens/refreshToken.js'
 
 async function createUser(req, res, next){
     try{
@@ -26,11 +27,22 @@ async function login(req, res, next){
     try{
         const {id} = req.user
         const accessToken = await accessTokens.createJwtToken(id)
+        const refreshToken = await refreshTokens.createRefreshToken(id)
         res.set('Authorization', accessToken);
-        res.status(200).send({accessToken: accessToken})
+        res.status(200).send({refreshToken: refreshToken})
     }catch(error){
         res.status(500).send(error.message)
     }
 }
 
-export {createUser, login, userByEmail}
+async function logout(req, res, next){
+    try{
+        const token = req.token
+        await accessTokens.invalidatesJwtToken(token)
+        res.status(204).send()
+    }catch(error){
+        res.status(500).send(error.message)
+    }
+}
+
+export {createUser, login, userByEmail, logout}

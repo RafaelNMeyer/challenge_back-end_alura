@@ -1,7 +1,6 @@
-import jwt from 'jsonwebtoken'
 import crypto from 'crypto'
 import moment from 'moment'
-import * as allowListRefreshToken from '../../redis/allowListRefreshToken.js'
+import * as allowListRefreshToken from '../../redis/allowlistRefreshToken.js'
 import TokenError from '../errors/TokenError.js'
 
 const expiration = {time: 5, unit: 'd'}

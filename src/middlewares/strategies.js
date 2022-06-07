@@ -16,7 +16,7 @@ passport.use(
         },
         async (email, password, done) => {
             try{
-                const user = await userService.userByEmail(email)
+                const user = await userService.checkLogin(email, password)
                 done(null, user)
             }catch(error){
                 done(error)
