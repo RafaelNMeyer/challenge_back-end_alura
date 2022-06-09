@@ -1,4 +1,6 @@
-# Alura challenge API - API REST, BEARER TOKEN, REFRESH TOKEN and REDIS.
+# Alura challenge API 
+
+## Api Rest, Bearer Token, Refresh Token and Redis.
 
 This challenge was made to test my knowldge of some technologies.
 
