@@ -1,8 +1,8 @@
-# Alura challenge API
+# Alura challenge API - API REST, BEARER TOKEN, REFRESH TOKEN and REDIS.
 
 This challenge was made to test my knowldge of some technologies.
 
-Here you will go through an api rest that will use tokens to authenticate the user.
+Here you will go through an api rest that will use tokens to authenticate the user and will cache the tokens using redis.
 
 You will be able to add expenditures and receipts of your month but only if you are logged in and authenticated.
 
