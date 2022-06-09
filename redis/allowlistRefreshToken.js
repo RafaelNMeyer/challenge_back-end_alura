@@ -1,7 +1,12 @@
 import redis from 'redis';
 
-const allowListRefreshToken = redis.createClient({prefix: 'allowListRefreshToken:'});
+const redis_url = new URL(process.env.REDIS_URL)
+
+const allowListRefreshToken = redis.createClient(redis_url.port, redis_url.hostname, {no_ready_check: true}, {prefix: 'allowListRefreshToken:'});
 await allowListRefreshToken.connect()
+
+if(redis.password)
+  blocklistAcessToken.auth(redis_url.password)
 
 async function add(token, value, expirationDate){
     await allowListRefreshToken.set(token, value)
