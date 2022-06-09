@@ -186,6 +186,12 @@ You should replace the values in the command:
 
 <br>
 
+## The local REDIS_URL example is:
+
+        redis://localhost:6379
+
+<br>
+
 # Run the app
 
         npm run dev

@@ -6,6 +6,7 @@ const redis_url = new URL(process.env.REDIS_URL)
 
 const blocklistAcessToken = redis.createClient(redis_url.port, redis_url.hostname, {no_ready_check: true}, {prefix: 'blocklistAcessToken:'});
 await blocklistAcessToken.connect()
+
 if(redis.password)
   blocklistAcessToken.auth(redis_url.password)
 
