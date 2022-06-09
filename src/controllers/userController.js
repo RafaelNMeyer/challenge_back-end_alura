@@ -7,7 +7,7 @@ async function createUser(req, res, next){
         const result = await userService.createUser(req.body)
         return res.status(200).send(result)
     }catch(error){
-        if(error.name === 'UserError') return res.status(error.status).send(error.name)
+        if(error.name === 'UserError') return res.status(error.status).send({error: error.message})
         return next(error)
     }
 }
@@ -18,7 +18,7 @@ async function userByEmail(req, res, next){
         const result = await userService.userByEmail(email)
         return res.status(200).send(result)
     }catch(error){
-        if(error.name === 'UserError') return res.status(error.status).send(error.name)
+        if(error.name === 'UserError') return res.status(error.status).send({error: error.message})
         return next(error)
     }
 }
@@ -31,7 +31,7 @@ async function login(req, res, next){
         res.set('Authorization', accessToken);
         res.status(200).send({refreshToken: refreshToken})
     }catch(error){
-        res.status(500).send(error.message)
+        res.status(500).send({error: error.message})
     }
 }
 
@@ -41,7 +41,7 @@ async function logout(req, res, next){
         await accessTokens.invalidatesJwtToken(token)
         res.status(204).send()
     }catch(error){
-        res.status(500).send(error.message)
+        res.status(500).send({error: error.message})
     }
 }
 

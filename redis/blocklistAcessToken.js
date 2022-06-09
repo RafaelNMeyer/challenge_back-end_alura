@@ -3,7 +3,6 @@ import jwt from 'jsonwebtoken';
 import {createHash} from 'crypto';
 
 const blocklistAcessToken = redis.createClient({prefix: 'blocklistAcessToken:'});
-
 await blocklistAcessToken.connect()
 
 function createHashToken(token) {

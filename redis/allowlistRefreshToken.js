@@ -1,7 +1,6 @@
 import redis from 'redis';
 
 const allowListRefreshToken = redis.createClient({prefix: 'allowListRefreshToken:'});
-
 await allowListRefreshToken.connect()
 
 async function add(token, value, expirationDate){

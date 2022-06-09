@@ -5,7 +5,7 @@ async function insertExpenditure(req, res, next){
         const result = await expenditureService.insertExpenditure(req.body);
         return res.status(201).send(result)
     } catch(error){
-        if (error.name === 'ExpenditureError') return res.status(error.status).send(error.message);
+        if (error.name === 'ExpenditureError') return res.status(error.status).send({error: error.message});
         return next(error)
     }
 }
@@ -16,7 +16,7 @@ async function listByDate(req, res, next){
         const result = await expenditureService.listByDate(year, month)
         return res.status(200).send(result)
     }catch(error){
-        if (error.name === 'ExpenditureError') return res.status(error.status).send(error.message);
+        if (error.name === 'ExpenditureError') return res.status(error.status).send({error: error.message});
         return next(error)
     }
 }
@@ -36,7 +36,7 @@ async function listExpenditure(req, res, next){
         const result = await expenditureService.listExpenditure(req.params.id)
         return res.status(200).send(result)
     }catch(error){
-        if(error.name === 'ExpenditureError') return res.status(error.status).send(error.message)
+        if(error.name === 'ExpenditureError') return res.status(error.status).send({error: error.message})
         return next(error)
     }
 }
@@ -56,7 +56,7 @@ async function deleteExpenditure(req, res, next){
         const result = await expenditureService.deleteExpenditure(req.params.id)
         return res.status(200).send(result)
     }catch(error){
-        if(error.name === 'ExpenditureError') return res.status(error.status).send(error.message)
+        if(error.name === 'ExpenditureError') return res.status(error.status).send({error: error.message})
         return next(error)
     }
 }

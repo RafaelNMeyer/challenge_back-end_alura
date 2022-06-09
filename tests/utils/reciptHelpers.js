@@ -5,7 +5,7 @@ function endConnection() {
 }
 
 async function cleanDB() {
-    await connection.query('TRUNCATE recipes RESTART IDENTITY');
+    await connection.query('TRUNCATE recipts RESTART IDENTITY');
 }
 
 export {

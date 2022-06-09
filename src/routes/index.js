@@ -1,14 +1,14 @@
 import express from 'express';
-import recipes from './recipesRoutes.js';
+import recipts from './reciptsRoutes.js';
 import expenditures from './expendituresRoutes.js';
 import resume from './resumeRoutes.js'
 import users from './usersRoutes.js'
 
 const routes = (app) => {
     app.route('/').get((req, res) => {
-        res.status(200).send({message: 'Welcome to the Recipes API'});
+        res.status(200).send({message: 'Welcome to the recipts API'});
     })
-    app.use(express.json(), recipes, expenditures, resume, users)
+    app.use(express.json(), recipts, expenditures, resume, users)
 }
 
 export default routes;

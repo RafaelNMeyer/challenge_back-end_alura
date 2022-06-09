@@ -1,9 +1,8 @@
 import * as expenditureService from './expenditureService.js'
-import * as recipeService from './recipeService.js'
+import * as reciptService from './reciptService.js'
 
 function assembleValues(values){
     let sum = 0
-    const resumeCategory = {}
     for (let i = 0; i < values.length; i++) {
         const {value} = values[i]
         sum+=values[i].value
@@ -26,14 +25,14 @@ function resumeExpenditureCategory(expenditures){
 }
 
 async function resume(year, month){
-    const recipesMonth = await recipeService.listByDate(year, month)
+    const reciptsMonth = await reciptService.listByDate(year, month)
     const expendituresMonth = await expenditureService.listByDate(year, month)
-    const totalRecipes = assembleValues(recipesMonth)
+    const totalrecipts = assembleValues(reciptsMonth)
     const totalExpenditures = assembleValues(expendituresMonth)
     const resumeCategory = resumeExpenditureCategory(expendituresMonth)
-    const totalBalance = totalRecipes - totalExpenditures
+    const totalBalance = totalrecipts - totalExpenditures
     const resume = {
-        totalRecipes:totalRecipes,
+        totalrecipts:totalrecipts,
         totalExpenditures:totalExpenditures,
         totalBalance:totalBalance,
         expenditures: resumeCategory

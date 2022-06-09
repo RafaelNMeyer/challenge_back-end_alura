@@ -3,7 +3,7 @@ import crypto from 'crypto'
 import moment from 'moment'
 import * as blocklistAccessToken from '../../redis/blocklistAcessToken.js'
 
-const expiration = {time: 10, unit: 's'}
+const expiration = {time: 15, unit: 'm'}
 
 function createJwtToken(id){
     const payload = {id}
