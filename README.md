@@ -8,9 +8,7 @@ You will be able to add expenditures and receipts of your month but only if you 
 
 <br/>
 
-## You can test the api by the following url:
-
-        https://voltz-challenge.herokuapp.com/
+## You can test the api by the following url: 
 
 ### You can test the routes using [Postman](https://www.postman.com/downloads/) or [Thunder Client](https://www.thunderclient.com/)
 
