@@ -117,41 +117,41 @@ You will be able to add expenditures and receipts of your month but only if you 
 
         ### Register User:
         
-        Body: {
-                "name": "name",
-                "email": "
-                "password": "password"
-        }
+                Body: {
+                        "name": "name",
+                        "email": "
+                        "password": "password"
+                }
 
         ### Login User:
 
-        Body: {
-                "email": "email",
-                "password": "password"
-        }
+                Body: {
+                        "email": "email",
+                        "password": "password"
+                }
 
         ### Update Token:
 
-        Body: {
-                "refreshToken": "refreshToken"
-        }
+                Body: {
+                        "refreshToken": "refreshToken"
+                }
 
         ### Insert Recipt:
 
-        Body: {
-                "description": "description",
-                "value": "value",
-                "date": "date",
-        }
+                Body: {
+                        "description": "description",
+                        "value": "value",
+                        "date": "date",
+                }
         
         ### Update expenditure:
 
-        Body: {
-                "description": "description",
-                "value": "value",
-                "date": "date",
-                "category": "category",
-        }
+                Body: {
+                        "description": "description",
+                        "value": "value",
+                        "date": "date",
+                        "category": "category",
+                }
 
 <br>
 
