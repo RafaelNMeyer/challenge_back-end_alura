@@ -6,7 +6,7 @@ const allowListRefreshToken = redis.createClient(redis_url.port, redis_url.hostn
 await allowListRefreshToken.connect()
 
 if(redis.password)
-  blocklistAcessToken.auth(redis_url.password)
+    allowListRefreshToken.auth(redis_url.password)
 
 async function add(token, value, expirationDate){
     await allowListRefreshToken.set(token, value)
