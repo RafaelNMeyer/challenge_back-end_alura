@@ -2,6 +2,8 @@ import redis from 'redis';
 
 const redis_url = new URL(process.env.REDIS_URL)
 
+console.log(redis_url)
+
 const allowListRefreshToken = redis.createClient(redis_url.port, redis_url.hostname, {no_ready_check: true}, {prefix: 'allowListRefreshToken:'});
 await allowListRefreshToken.connect()
 
