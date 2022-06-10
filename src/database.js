@@ -8,7 +8,7 @@ let databaseConnection = {
     connectionString: DATABASE_URL
 }
 
-if(NODE_ENV === 'production') {
+if(NODE_ENV === 'prod') {
     databaseConnection = {
         connectionString: DATABASE_URL,
         ssl: {
