@@ -2,17 +2,21 @@ import redis from "redis";
 import jwt from "jsonwebtoken";
 import { createHash } from "crypto";
 
+
+let socket = {}
+if(process.env.NODE_ENV === 'prod'){
+  socket = {
+    tls: true,
+    rejectUnauthorized: false,
+  }
+}
+
 const blocklistAcessToken = redis.createClient({
   prefix: "blocklistAcessToken:",
   url: process.env.REDIS_TLS_URL,
-  socket: {
-    tls: true,
-    rejectUnauthorized: false,
-  },
+  socket
 });
 await blocklistAcessToken.connect();
-
-if (redis.password) blocklistAcessToken.auth(redis_url.password);
 
 function createHashToken(token) {
   return createHash("sha256").update(token).digest("hex");
