@@ -144,7 +144,7 @@ You will be able to add expenditures and receipts of your month but only if you 
                         "date": "date",
                 }
         
-        ### Update expenditure:
+        ### Insert expenditure:
 
                 Body: {
                         "description": "description",
