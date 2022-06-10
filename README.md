@@ -113,6 +113,47 @@ You will be able to add expenditures and receipts of your month but only if you 
 
         *all the routes above must be sent with the token in the header.
 
+# Body examples:
+
+        ### Register User:
+        
+        Body: {
+                "name": "name",
+                "email": "
+                "password": "password"
+        }
+
+        ### Login User:
+
+        Body: {
+                "email": "email",
+                "password": "password"
+        }
+
+        ### Update Token:
+
+        Body: {
+                "refreshToken": "refreshToken"
+        }
+
+        ### Insert Recipt:
+
+        Body: {
+                "description": "description",
+                "value": "value",
+                "date": "date",
+        }
+        
+        ### Update expenditure:
+
+        Body: {
+                "description": "description",
+                "value": "value",
+                "date": "date",
+                "category": "category",
+        }
+
+<br>
 
     
 ## If you want to run the API on your local machine follow the tutorial bellow
@@ -199,12 +240,5 @@ You should replace the values in the command:
 # Run the app
 
         npm run dev
-
-<br>
-
-# Run the tests
-
-        npm run test-once
-
 
 <br>
