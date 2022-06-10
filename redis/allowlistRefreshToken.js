@@ -2,9 +2,14 @@ import redis from 'redis';
 
 const redis_url = new URL(process.env.REDIS_URL)
 
-console.log(redis_url)
-
-const allowListRefreshToken = redis.createClient(redis_url.port, redis_url.hostname, {no_ready_check: true}, {prefix: 'allowListRefreshToken:'});
+const allowListRefreshToken = redis.createClient({
+    prefix: 'allowListRefreshToken:',
+    url: process.env.REDIS_URL,
+    socket:{
+        tls:true,
+        rejectUnauthorized: false
+    }
+});
 await allowListRefreshToken.connect()
 
 if(redis.password)
