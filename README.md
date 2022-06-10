@@ -12,6 +12,8 @@ You will be able to add expenditures and receipts of your month but only if you 
 
 ## You can test the api by the following url: 
 
+        https://challenge-api-rest-tokens.herokuapp.com/
+
 ### You can test the routes using [Postman](https://www.postman.com/downloads/) or [Thunder Client](https://www.thunderclient.com/)
 
 <br>
