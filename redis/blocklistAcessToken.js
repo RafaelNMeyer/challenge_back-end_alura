@@ -2,11 +2,9 @@ import redis from "redis";
 import jwt from "jsonwebtoken";
 import { createHash } from "crypto";
 
-const redis_url = new URL(process.env.REDIS_URL);
-
 const blocklistAcessToken = redis.createClient({
   prefix: "blocklistAcessToken:",
-  url: process.env.REDIS_URL,
+  url: process.env.REDIS_TLS_URL,
   socket: {
     tls: true,
     rejectUnauthorized: false,
